@@ -1,0 +1,197 @@
+body {
+    background-color: antiquewhite;
+}
+
+.transform, .transition, .animation {
+    border: 2px solid gray;
+    margin: 1rem 0;
+
+}
+
+.box {
+    width: 200px;
+    height: 200px;
+
+}
+
+.b1{
+    background-color: aqua;
+}
+
+.b2 {
+    background-color: pink;
+}
+
+.b3 {
+    background-color: #ccccff;
+}
+
+.b4 {
+    background-color: #ffffc5;
+}
+
+/* CSS Transitions */
+
+.transition .b1 {
+    /* property duration timing delay */
+    transition: width 1000ms ease-in-out 0.5s;
+}
+
+.transition .b1:hover {
+    width: 400px;
+}
+
+.transition .b2 {
+    transition: width 1s 0.2s, height 0.5s 0.5s;
+    transition-timing-function: ease-in;
+}
+
+/* if values are the same you can just use transition-timing-function to specifiy the transition */
+
+.transition .b2:hover {
+    width: 400px;
+    height: 400px;
+    background-color: cadetblue;
+}
+
+.transition .b3:hover {
+    transition: transform 1s cubic-bezier(.17,.67,.86,.09) 0.5s;
+}
+
+.transition .b3:hover {
+    transform: rotate(80deg);
+}
+
+.transition .b4:hover {
+    transition: all 1s ease-out 0.2s;
+}
+
+.transition .b4:hover {
+    border-radius: 2rem;
+    background-color: burlywood;
+}
+
+/* CSS Transform */
+
+.transform .box {
+    transition: all 1s ease-in-out 0.2s;
+}
+
+.transform .b1:hover {
+    transform: translate(200px, 100px);
+}
+/* provide a default position/size */
+.transform .b2{
+    transform: scale(0.8);
+}
+
+.transform .b2:hover {
+    transform: scale(1.2);
+}
+
+.transform .b3 {
+    transform-origin: right top;
+}
+
+.transform .b3:hover {
+    transform: rotate(45deg);
+    /* transform-origin: right top; */
+}
+
+/* before hover make sure there is X and Y angle added to the b4 */
+
+/* after hover it will be normal angle (0 degree) */
+
+.transform .b4 {
+    transform: skewX(45deg) skewY(20deg);
+}
+
+.transform .b4:hover {
+    transform: skew(0);
+}
+
+/* CSS Animation */
+
+@keyframes changeColor {
+    from {
+        background-color: cornflowerblue;
+    }
+    to {
+        background-color: coral;
+    }
+}
+
+.animation .b1 {
+    animation-name: changeColor;
+    animation-duration: 2s;
+    animation-delay: 3s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes moveAround {
+    0% {
+        transform: translate(0, 0);
+    }
+    25% {
+        transform: translate(200px);
+    }
+    50% {
+        transform: translate(200px, 200px);
+    }
+    75% {
+        transform: translate(0, 200px);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+/* shorthand for writting out animation-name and animation-duration is just writing animation, putting the name first, comma, then direction */
+
+.animation .b2 {
+    animation: moveAround 4s;
+    animation-delay: 3s;
+    animation-iteration-count: 10;
+    animation-direction: alternate;
+}
+
+@keyframes transformbox {
+    0% {
+        transform: scale(0.7) rotateX(0) translateX(0);
+    }
+    100%{
+        transform: scale(1.2) rotateX(180deg) translateX(600px);
+    }
+}
+
+
+.animation .b3 {
+    /* name duration timing function delay count direction fill */
+    animation: transformbox 1s 3s infinite alternate;
+}
+
+.animation .b3:active {
+    animation-play-state: paused;
+}
+
+@keyframes flip {
+    0% {
+        transform: rotate(25deg);
+    }
+    25% {
+        transform: rotate(25deg);
+    }
+    50% {
+        transform: rotate(25deg);
+    }
+    75% {
+        transform: rotate(25deg);
+    }
+    100% {
+        transform: rotate(25deg);
+    }
+}
+
+.animation .b4 {
+    animation: flip 1s 2s infinite;
+}
